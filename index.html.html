@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abdullah Ejaz — GHL Expert & Digital Growth Strategist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --dark: #0A0A0A;
+    --dark-2: #111111;
+    --dark-3: #1A1A1A;
+    --dark-4: #222222;
+    --text: #F0EDE8;
+    --text-muted: #8A8680;
+    --text-dim: #5A5652;
+    --accent: #C9A84C;
+    --border: rgba(201,168,76,0.15);
+    --border-hover: rgba(201,168,76,0.4);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 0.5rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--dark); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .hero-content { max-width: 700px; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 520px;
+    line-height: 1.75;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 0.875rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    padding: 0.875rem 2.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.25s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex;
+    gap: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 4rem; }
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-tag::before {
+    content: '';
+    width: 2rem;
+    height: 1px;
+    background: var(--gold);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+  }
+  h2 em { font-style: italic; color: var(--gold); }
+  .section-intro {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 3.5rem;
+    font-weight: 300;
+  }
+
+  /* SERVICES */
+  .services { background: var(--dark-2); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .service-card {
+    background: var(--dark-2);
+    padding: 2.5rem 2rem;
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card:hover { background: var(--dark-3); }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 44px; height: 44px;
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
+  }
+  .service-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+  .service-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* WORK / WEBSITES */
+  .work { background: var(--dark); }
+  .work-category {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .work-category:first-of-type { margin-top: 0; }
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .work-card {
+    background: var(--dark);
+    padding: 1.75rem;
+    text-decoration: none;
+    display: block;
+    transition: background 0.2s;
+    position: relative;
+  }
+  .work-card:hover { background: var(--dark-3); }
+  .work-card-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .work-card-name svg { opacity: 0; transition: opacity 0.2s; }
+  .work-card:hover .work-card-name svg { opacity: 1; }
+  .work-card-url {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+  .work-tag {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* WORKFLOWS */
+  .workflows { background: var(--dark-2); }
+  .workflow-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .workflow-item {
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .workflow-item:hover { border-color: var(--border-hover); }
+  .workflow-icon-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .wf-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+  .workflow-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .workflow-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* CONTACT */
+  .contact { background: var(--dark); }
+  .contact-inner {
+    max-width: 720px;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .contact-card {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    transition: border-color 0.25s;
+  }
+  .contact-card:hover { border-color: var(--gold); }
+  .contact-card-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .contact-card-value {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 400;
+    text-decoration: none;
+    display: block;
+  }
+  .contact-card-value:hover { color: var(--gold); }
+  .contact-cta {
+    margin-top: 3rem;
+    padding: 2.5rem;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .contact-cta-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .contact-cta-text em { font-style: italic; color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark-2);
+    border-top: 1px solid var(--border);
+    padding: 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--gold);
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  /* DIVIDER */
+  .gold-line {
+    width: 3rem;
+    height: 1px;
+    background: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+  .fade-in:nth-child(2) { transition-delay: 0.1s; }
+  .fade-in:nth-child(3) { transition-delay: 0.2s; }
+  .fade-in:nth-child(4) { transition-delay: 0.3s; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { padding: 1.5rem; }
+    .contact-cta { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Abdullah Ejaz</div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#automations">Automations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:abdullahejaz112233@gmail.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Available for Projects</div>
+    <h1>GoHighLevel<br><em>Expert &</em><br>Growth Strategist</h1>
+    <p class="hero-sub">I build complete digital ecosystems — websites, funnels, automations, CRM pipelines, booking systems, and ecommerce — all inside GoHighLevel.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Let's Talk</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Business Websites</div>
+      </div>
+      <div>
+        <div class="stat-num">7+</div>
+        <div class="stat-label">Sales Funnels</div>
+      </div>
+      <div>
+        <div class="stat-num">10+</div>
+        <div class="stat-label">GHL Workflows</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-tag">What I Do</div>
+  <h2>Full-Stack <em>GHL</em> Solutions</h2>
+  <p class="section-intro">From first click to closed deal — I handle every layer of your GoHighLevel setup so you can focus on running your business.</p>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-icon">🌐</div>
+      <div class="service-title">Website Design & Build</div>
+      <div class="service-desc">Custom, conversion-focused business websites built natively in GHL — fast, mobile-optimized, and fully integrated with your CRM.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">⚡</div>
+      <div class="service-title">Sales Funnels</div>
+      <div class="service-desc">High-converting sales funnels with upsells, downsells, order bumps, and post-purchase sequences designed to maximize revenue per lead.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🤖</div>
+      <div class="service-title">Workflow Automations</div>
+      <div class="service-desc">Smart multi-step automations for lead nurturing, booking confirmation, qualification, onboarding, follow-ups, and pipeline movement.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">📅</div>
+      <div class="service-title">Booking Systems</div>
+      <div class="service-desc">Calendar and appointment systems with automatic confirmations, reminders, rescheduling flows, and integration into your sales pipeline.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">📊</div>
+      <div class="service-title">Pipeline & CRM Setup</div>
+      <div class="service-desc">Custom opportunity pipelines, contact tagging, stage-based automations, and reporting dashboards — total visibility of your sales process.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon">🛒</div>
+      <div class="service-title">E-Commerce & Products</div>
+      <div class="service-desc">GHL product catalogs, payment integration, order workflows, and post-purchase automation — a complete ecommerce engine in one platform.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <div class="section-tag">Portfolio</div>
+  <h2>Sites & Funnels <em>I've Built</em></h2>
+  <p class="section-intro">A selection of business websites and high-converting sales funnels built across industries.</p>
+
+  <div class="work-category">Business Websites</div>
+  <div class="work-grid">
+    <a href="https://tattootradeschool.com/move-the-needle247943" target="_blank" class="work-card">
+      <div class="work-card-name">Tattoo Trade School <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">tattootradeschool.com</div>
+      <div class="work-tag">Education / Booking</div>
+    </a>
+    <a href="https://vinpearlnailspa.com/" target="_blank" class="work-card">
+      <div class="work-card-name">Vin Pearl Nail Spa <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">vinpearlnailspa.com</div>
+      <div class="work-tag">Beauty & Wellness</div>
+    </a>
+    <a href="https://hygrovecontracting.com/" target="_blank" class="work-card">
+      <div class="work-card-name">Hygrove Contracting <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">hygrovecontracting.com</div>
+      <div class="work-tag">Construction</div>
+    </a>
+    <a href="https://radicalcanadawest.ca/home" target="_blank" class="work-card">
+      <div class="work-card-name">Radical Canada West <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">radicalcanadawest.ca</div>
+      <div class="work-tag">Business</div>
+    </a>
+    <a href="https://aelgaragedoors.com/home" target="_blank" class="work-card">
+      <div class="work-card-name">AEL Garage Doors <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">aelgaragedoors.com</div>
+      <div class="work-tag">Home Services</div>
+    </a>
+    <a href="https://arcticsnow.ca/home" target="_blank" class="work-card">
+      <div class="work-card-name">Arctic Snow <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">arcticsnow.ca</div>
+      <div class="work-tag">Landscaping / Snow</div>
+    </a>
+    <a href="https://blazeconstruction.ca/" target="_blank" class="work-card">
+      <div class="work-card-name">Blaze Construction <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">blazeconstruction.ca</div>
+      <div class="work-tag">Construction</div>
+    </a>
+    <a href="https://leadlogicmedspas.com/home836826" target="_blank" class="work-card">
+      <div class="work-card-name">Lead Logic Med Spas <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">leadlogicmedspas.com</div>
+      <div class="work-tag">Med Spa / Marketing</div>
+    </a>
+    <a href="https://sunriselaserspa.ca/home" target="_blank" class="work-card">
+      <div class="work-card-name">Sunrise Laser Spa <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">sunriselaserspa.ca</div>
+      <div class="work-tag">Beauty & Wellness</div>
+    </a>
+    <a href="https://clearvisioncounselling.com/home" target="_blank" class="work-card">
+      <div class="work-card-name">Clear Vision Counselling <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">clearvisioncounselling.com</div>
+      <div class="work-tag">Mental Health</div>
+    </a>
+    <a href="https://rutlandplumbing.ca/home" target="_blank" class="work-card">
+      <div class="work-card-name">Rutland Plumbing <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">rutlandplumbing.ca</div>
+      <div class="work-tag">Home Services</div>
+    </a>
+    <a href="https://gennaripartners.com/home" target="_blank" class="work-card">
+      <div class="work-card-name">Gennari Partners <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">gennaripartners.com</div>
+      <div class="work-tag">Finance / Consulting</div>
+    </a>
+    <a href="https://jaybirdmedia.ca/" target="_blank" class="work-card">
+      <div class="work-card-name">Jaybird Media <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">jaybirdmedia.ca</div>
+      <div class="work-tag">Media / Agency</div>
+    </a>
+    <a href="https://edgeelectric.ca/" target="_blank" class="work-card">
+      <div class="work-card-name">Edge Electric <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">edgeelectric.ca</div>
+      <div class="work-tag">Electrical / Trade</div>
+    </a>
+  </div>
+
+  <div class="work-category" style="margin-top:3rem;">Sales Funnels & E-Commerce</div>
+  <div class="work-grid">
+    <a href="https://fullybooked-pro.com/masterclass" target="_blank" class="work-card">
+      <div class="work-card-name">Fully Booked Pro <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">fullybooked-pro.com/masterclass</div>
+      <div class="work-tag">Masterclass Funnel</div>
+    </a>
+    <a href="https://go.hookagency.com/get-more-leads" target="_blank" class="work-card">
+      <div class="work-card-name">Hook Agency <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">go.hookagency.com</div>
+      <div class="work-tag">Lead Gen Funnel</div>
+    </a>
+    <a href="https://link.elevatemd.com/emd-pro" target="_blank" class="work-card">
+      <div class="work-card-name">Elevate MD <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">link.elevatemd.com</div>
+      <div class="work-tag">Med / Product Funnel</div>
+    </a>
+    <a href="https://go.vehicleresponsetraining.com/safety-training-1473" target="_blank" class="work-card">
+      <div class="work-card-name">Vehicle Response Training <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="work-card-url">vehicleresponsetraining.com</div>
+      <div class="work-tag">Training / Course Funnel</div>
+    </a>
+  </div>
+</section>
+
+<!-- AUTOMATIONS -->
+<section class="workflows" id="automations">
+  <div class="section-tag">GHL Expertise</div>
+  <h2>Automation <em>Workflows</em> I Build</h2>
+  <p class="section-intro">Real workflows I've designed and deployed — from booking sequences to full ecommerce fulfillment pipelines.</p>
+  <div class="workflow-list">
+    <div class="workflow-item fade-in">
+      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">Studio Placement Booked Call Sequence</div></div>
+      <div class="workflow-desc">Triggers when a customer books via calendar. Auto-tags as "Booked Call", creates/updates opportunity in CRM pipeline, then ends.</div>
+    </div>
+    <div class="workflow-item fade-in">
+      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">290U Application Qualification</div></div>
+      <div class="workflow-desc">Form-triggered dual-branch workflow: qualifies leads, sends acceptance email + "Qualified" tag, or routes to soft disqualification/nurture with a 24h delay.</div>
+    </div>
+    <div class="workflow-item fade-in">
+      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">Connecting GHL to Whop</div></div>
+      <div class="workflow-desc">Inbound webhook creates a contact, then routes via condition into 4 branches: Main $97, Upsell $47, Downsell $27, or None — each adds a product tag.</div>
+    </div>
+    <div class="workflow-item fade-in">
+      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">CKSR Low Ticket Purchased</div></div>
+      <div class="workflow-desc">Contact created trigger → checks for existing tag → if not tagged, adds low ticket tag → sends Email → waits 1 min → SMS → wait 24h (multi-touch follow-up).</div>
+    </div>
+    <div class="workflow-item fade-in">
+      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">Paid Whop Onboarding</div></div>
+      <div class="workflow-desc">Dual trigger (contact created + tag check) → creates opportunity → adds tag → Welcome Email → Onboarding Email 1 → Wait → Onboarding Email 2 → End.</div>
+    </div>
+    <div class="workflow-item fade-in">
+      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">Purchase — Close Opportunity Won</div></div>
+      <div class="workflow-desc">Fires when "TSA Trading & Investing Group" tag is added → immediately closes opportunity as Won in the CRM pipeline. Clean, instant pipeline update.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="section-tag">Get In Touch</div>
+    <h2>Ready to <em>Grow</em><br>Your Business?</h2>
+    <p class="section-intro">Whether you need a full GHL buildout or help with one specific system, let's talk about what's possible.</p>
+    <div class="gold-line"></div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-card-label">Email</div>
+        <a href="mailto:abdullahejaz112233@gmail.com" class="contact-card-value">abdullahejaz112233@gmail.com</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-label">Phone / WhatsApp</div>
+        <a href="tel:+923165252359" class="contact-card-value">+92 316 5252359</a>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <div class="contact-cta-text">Let's build something <em>remarkable</em> together.</div>
+      <a href="mailto:abdullahejaz112233@gmail.com" class="btn-primary">Send a Message</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Abdullah Ejaz</div>
+  <div class="footer-copy">© 2025 · GoHighLevel Expert · Based in Rawalpindi, Pakistan</div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
