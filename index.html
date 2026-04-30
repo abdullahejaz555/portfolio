@@ -11,6 +11,7 @@
   :root {
     --gold: #C9A84C;
     --gold-light: #E8C97A;
+    --gold-dim: rgba(201,168,76,0.12);
     --dark: #0A0A0A;
     --dark-2: #111111;
     --dark-3: #1A1A1A;
@@ -18,471 +19,246 @@
     --text: #F0EDE8;
     --text-muted: #8A8680;
     --text-dim: #5A5652;
-    --accent: #C9A84C;
     --border: rgba(201,168,76,0.15);
-    --border-hover: rgba(201,168,76,0.4);
+    --border-hover: rgba(201,168,76,0.45);
   }
 
   html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--text); line-height: 1.6; overflow-x: hidden; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--dark);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); }
 
   /* NAV */
   nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 1.25rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(20px);
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--border);
+    transition: padding 0.3s;
   }
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    color: var(--gold);
-    letter-spacing: 0.02em;
-  }
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.875rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
+  nav.scrolled { padding: 0.875rem 4rem; }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--gold); letter-spacing: 0.02em; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.8rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
   .nav-links a:hover { color: var(--gold); }
-  .nav-cta {
-    background: transparent;
-    border: 1px solid var(--gold);
-    color: var(--gold);
-    padding: 0.5rem 1.5rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.25s;
-    display: inline-block;
-  }
+  .nav-cta { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 0.5rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: all 0.25s; display: inline-block; }
   .nav-cta:hover { background: var(--gold); color: var(--dark); }
 
   /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 8rem 4rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
+  .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 65% at 72% 48%, rgba(201,168,76,0.07) 0%, transparent 65%); pointer-events: none; }
   .hero-grid {
-    position: absolute;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+  .hero-orb {
+    position: absolute; right: 8%; top: 50%; transform: translateY(-50%);
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+    border: 1px solid rgba(201,168,76,0.08);
     pointer-events: none;
+    animation: breathe 6s ease-in-out infinite;
   }
-  .hero-content { max-width: 700px; position: relative; z-index: 1; }
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    border: 1px solid var(--border);
-    padding: 0.4rem 1rem;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 2rem;
+  .hero-orb::before {
+    content: ''; position: absolute; inset: 30px; border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.06);
+    animation: breathe 6s ease-in-out infinite reverse;
   }
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    animation: pulse 2s infinite;
+  .hero-orb::after {
+    content: ''; position: absolute; inset: 70px; border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.04);
   }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  @keyframes breathe { 0%,100% { transform: translateY(-50%) scale(1); } 50% { transform: translateY(-50%) scale(1.04); } }
 
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
+  .hero-content { max-width: 680px; position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1px solid var(--border); padding: 0.4rem 1.1rem;
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 2rem; background: rgba(201,168,76,0.04);
   }
-  h1 em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .hero-sub {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    max-width: 520px;
-    line-height: 1.75;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-  }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(201,168,76,0.4); } 50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(201,168,76,0); } }
+
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 500px; line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300; }
   .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--gold);
-    color: var(--dark);
-    padding: 0.875rem 2.5rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.25s;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .btn-outline {
-    background: transparent;
-    color: var(--text);
-    padding: 0.875rem 2.5rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    border: 1px solid rgba(255,255,255,0.2);
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.25s;
-  }
+
+  .btn-primary { background: var(--gold); color: var(--dark); padding: 0.9rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.25s; position: relative; overflow: hidden; }
+  .btn-primary::after { content: ''; position: absolute; inset: 0; background: rgba(255,255,255,0.1); transform: translateX(-100%); transition: transform 0.3s; }
+  .btn-primary:hover::after { transform: translateX(0); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.25); }
+  .btn-outline { background: transparent; color: var(--text); padding: 0.9rem 2.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.25s; }
   .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
-  .hero-stats {
-    margin-top: 4rem;
-    display: flex;
-    gap: 3rem;
-    padding-top: 2.5rem;
-    border-top: 1px solid var(--border);
-  }
-  .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.25rem;
-    font-weight: 700;
-    color: var(--gold);
-  }
-  .stat-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-top: 0.25rem;
-  }
+  .hero-stats { margin-top: 4rem; display: flex; gap: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.4rem; }
 
   /* SECTION COMMONS */
-  section { padding: 6rem 4rem; }
-  .section-tag {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .section-tag::before {
-    content: '';
-    width: 2rem;
-    height: 1px;
-    background: var(--gold);
-  }
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3.25rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
-    margin-bottom: 1rem;
-  }
+  section { padding: 7rem 4rem; }
+  .section-tag { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.75rem; }
+  .section-tag::before { content: ''; width: 2.5rem; height: 1px; background: var(--gold); }
+  h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 1rem; }
   h2 em { font-style: italic; color: var(--gold); }
-  .section-intro {
-    font-size: 1rem;
-    color: var(--text-muted);
-    max-width: 560px;
-    line-height: 1.75;
-    margin-bottom: 3.5rem;
-    font-weight: 300;
-  }
+  .section-intro { font-size: 0.975rem; color: var(--text-muted); max-width: 540px; line-height: 1.8; margin-bottom: 4rem; font-weight: 300; }
+
+  /* MARQUEE TICKER */
+  .ticker { background: var(--gold); padding: 0.7rem 0; overflow: hidden; white-space: nowrap; }
+  .ticker-inner { display: inline-flex; animation: ticker 25s linear infinite; }
+  .ticker-item { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--dark); padding: 0 2.5rem; }
+  .ticker-sep { color: rgba(0,0,0,0.3); }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
   /* SERVICES */
   .services { background: var(--dark-2); }
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5px;
-    background: var(--border);
-    border: 1px solid var(--border);
-  }
-  .service-card {
-    background: var(--dark-2);
-    padding: 2.5rem 2rem;
-    transition: background 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; background: var(--border); border: 1px solid var(--border); }
+  .service-card { background: var(--dark-2); padding: 2.75rem 2.25rem; transition: background 0.3s; position: relative; overflow: hidden; }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: scaleX(0); transition: transform 0.4s; }
   .service-card:hover { background: var(--dark-3); }
-  .service-card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--gold);
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: left;
-  }
-  .service-card:hover::after { transform: scaleX(1); }
-  .service-icon {
-    width: 44px; height: 44px;
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 1.5rem;
-    font-size: 1.25rem;
-  }
-  .service-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: var(--text);
-  }
-  .service-desc {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    line-height: 1.7;
-    font-weight: 300;
-  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-num { font-family: 'Playfair Display', serif; font-size: 0.75rem; color: var(--gold); opacity: 0.5; margin-bottom: 1.5rem; letter-spacing: 0.1em; }
+  .service-icon { font-size: 1.5rem; margin-bottom: 1.25rem; display: block; }
+  .service-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
+  .service-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; font-weight: 300; }
 
-  /* WORK / WEBSITES */
-  .work { background: var(--dark); }
-  .work-category {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.5rem;
-    margin-top: 3rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .work-category:first-of-type { margin-top: 0; }
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1px;
-    background: var(--border);
+  /* PROCESS */
+  .process { background: var(--dark); position: relative; overflow: hidden; }
+  .process-line { position: absolute; top: 50%; left: 4rem; right: 4rem; height: 1px; background: var(--border); pointer-events: none; }
+  .process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2rem; position: relative; z-index: 1; }
+  .process-step { text-align: center; }
+  .step-circle {
+    width: 56px; height: 56px; border-radius: 50%;
     border: 1px solid var(--border);
-  }
-  .work-card {
     background: var(--dark);
-    padding: 1.75rem;
-    text-decoration: none;
-    display: block;
-    transition: background 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; color: var(--gold);
+    transition: all 0.3s;
     position: relative;
   }
-  .work-card:hover { background: var(--dark-3); }
-  .work-card-name {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .work-card-name svg { opacity: 0; transition: opacity 0.2s; }
+  .process-step:hover .step-circle { background: var(--gold); color: var(--dark); border-color: var(--gold); box-shadow: 0 0 30px rgba(201,168,76,0.3); }
+  .step-title { font-size: 0.85rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; }
+  .step-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+
+  /* WORK */
+  .work { background: var(--dark-2); }
+  .work-tabs { display: flex; gap: 0; margin-bottom: 2.5rem; border: 1px solid var(--border); width: fit-content; }
+  .work-tab { padding: 0.6rem 1.75rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: none; background: transparent; color: var(--text-muted); font-family: 'DM Sans', sans-serif; transition: all 0.2s; border-right: 1px solid var(--border); }
+  .work-tab:last-child { border-right: none; }
+  .work-tab.active { background: var(--gold); color: var(--dark); font-weight: 600; }
+  .work-panel { display: none; }
+  .work-panel.active { display: block; }
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+  .work-card { background: var(--dark-2); padding: 1.75rem; text-decoration: none; display: block; transition: background 0.2s; position: relative; }
+  .work-card:hover { background: var(--dark-4); }
+  .work-card-name { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.35rem; display: flex; align-items: center; justify-content: space-between; }
+  .work-card-name svg { opacity: 0; transition: opacity 0.2s; flex-shrink: 0; }
   .work-card:hover .work-card-name svg { opacity: 1; }
-  .work-card-url {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-    font-weight: 300;
-  }
-  .work-tag {
-    display: inline-block;
-    margin-top: 0.75rem;
-    padding: 0.2rem 0.6rem;
-    background: rgba(201,168,76,0.08);
-    border: 1px solid rgba(201,168,76,0.2);
-    font-size: 0.65rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--gold);
-  }
+  .work-card-url { font-size: 0.72rem; color: var(--text-dim); font-weight: 300; }
+  .work-tag { display: inline-block; margin-top: 0.85rem; padding: 0.2rem 0.65rem; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.18); font-size: 0.62rem; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gold); }
 
   /* WORKFLOWS */
-  .workflows { background: var(--dark-2); }
-  .workflow-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1rem;
-  }
-  .workflow-item {
-    background: var(--dark-3);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    transition: border-color 0.2s;
-  }
-  .workflow-item:hover { border-color: var(--border-hover); }
-  .workflow-icon-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-  }
-  .wf-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--gold);
-    flex-shrink: 0;
-  }
-  .workflow-name {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .workflow-desc {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    line-height: 1.65;
-    font-weight: 300;
-  }
+  .workflows { background: var(--dark); }
+  .wf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+  .wf-card { background: var(--dark-2); border: 1px solid var(--border); padding: 1.75rem; transition: all 0.25s; position: relative; overflow: hidden; }
+  .wf-card::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--gold); transform: scaleY(0); transition: transform 0.3s; transform-origin: bottom; }
+  .wf-card:hover { border-color: var(--border-hover); background: var(--dark-3); transform: translateY(-2px); }
+  .wf-card:hover::after { transform: scaleY(1); }
+  .wf-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.85rem; }
+  .wf-title { font-size: 0.92rem; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .wf-badge { flex-shrink: 0; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.55rem; border: 1px solid rgba(201,168,76,0.25); color: var(--gold); background: rgba(201,168,76,0.06); white-space: nowrap; }
+  .wf-desc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.7; font-weight: 300; }
+  .wf-steps { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 1rem; }
+  .wf-step { font-size: 0.62rem; padding: 0.15rem 0.5rem; background: var(--dark-4); border: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); letter-spacing: 0.04em; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--dark-2); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .testi-card { background: var(--dark-3); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.25s; }
+  .testi-card:hover { border-color: var(--border-hover); }
+  .testi-stars { display: flex; gap: 0.2rem; margin-bottom: 1.25rem; }
+  .star { color: var(--gold); font-size: 0.85rem; }
+  .testi-text { font-size: 0.875rem; color: var(--text-muted); line-height: 1.8; font-weight: 300; font-style: italic; margin-bottom: 1.5rem; }
+  .testi-text::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); opacity: 0.4; display: block; line-height: 1; margin-bottom: 0.5rem; }
+  .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+  .testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gold-dim); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--gold); flex-shrink: 0; }
+  .testi-name { font-size: 0.82rem; font-weight: 500; color: var(--text); }
+  .testi-role { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.1rem; }
+
+  /* RESULTS / NUMBERS */
+  .results { background: var(--dark); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 4rem; }
+  .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .result-item { text-align: center; padding: 2.5rem 1rem; border: 1px solid var(--border); transition: border-color 0.25s, background 0.25s; }
+  .result-item:hover { border-color: var(--border-hover); background: var(--dark-2); }
+  .result-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+  .result-label { font-size: 0.72rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.5; }
 
   /* CONTACT */
-  .contact { background: var(--dark); }
-  .contact-inner {
-    max-width: 720px;
-  }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-  .contact-card {
-    border: 1px solid var(--border);
-    padding: 2rem;
-    transition: border-color 0.25s;
-  }
-  .contact-card:hover { border-color: var(--gold); }
-  .contact-card-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.75rem;
-  }
-  .contact-card-value {
-    font-size: 0.95rem;
-    color: var(--text);
-    font-weight: 400;
-    text-decoration: none;
-    display: block;
-  }
+  .contact { background: var(--dark-2); }
+  .contact-inner { max-width: 780px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 3rem; }
+  .contact-card { border: 1px solid var(--border); padding: 2rem; transition: all 0.25s; background: var(--dark-3); }
+  .contact-card:hover { border-color: var(--gold); background: var(--dark-4); }
+  .contact-card-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  .contact-card-value { font-size: 0.95rem; color: var(--text); font-weight: 400; text-decoration: none; display: block; transition: color 0.2s; }
   .contact-card-value:hover { color: var(--gold); }
-  .contact-cta {
-    margin-top: 3rem;
-    padding: 2.5rem;
-    background: var(--dark-3);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-  .contact-cta-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
+  .contact-cta { margin-top: 1.25rem; padding: 2.75rem; background: var(--dark-3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; position: relative; overflow: hidden; }
+  .contact-cta::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .contact-cta-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; }
   .contact-cta-text em { font-style: italic; color: var(--gold); }
+  .contact-note { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.4rem; }
 
   /* FOOTER */
-  footer {
-    background: var(--dark-2);
-    border-top: 1px solid var(--border);
-    padding: 2rem 4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1rem;
-    color: var(--gold);
-  }
-  .footer-copy {
-    font-size: 0.75rem;
-    color: var(--text-dim);
-  }
+  footer { background: var(--dark); border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.75rem; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { font-size: 0.72rem; color: var(--text-dim); }
 
-  /* DIVIDER */
-  .gold-line {
-    width: 3rem;
-    height: 1px;
-    background: var(--gold);
-    margin-bottom: 2rem;
-  }
-
-  /* ANIMATIONS */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.65s ease, transform 0.65s ease; }
   .fade-in.visible { opacity: 1; transform: none; }
-  .fade-in:nth-child(2) { transition-delay: 0.1s; }
-  .fade-in:nth-child(3) { transition-delay: 0.2s; }
-  .fade-in:nth-child(4) { transition-delay: 0.3s; }
+  .fade-in:nth-child(2) { transition-delay: 0.08s; }
+  .fade-in:nth-child(3) { transition-delay: 0.16s; }
+  .fade-in:nth-child(4) { transition-delay: 0.24s; }
+  .fade-in:nth-child(5) { transition-delay: 0.32s; }
 
+  /* GOLD LINE */
+  .gold-line { width: 3rem; height: 1px; background: var(--gold); margin-bottom: 2rem; }
+
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(3, 1fr); }
+  }
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
+    nav.scrolled { padding: 0.75rem 1.5rem; }
     .nav-links { display: none; }
-    section { padding: 4rem 1.5rem; }
+    section { padding: 4.5rem 1.5rem; }
     .hero { padding: 7rem 1.5rem 3rem; }
+    .hero-orb { display: none; }
     .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    .services-grid { grid-template-columns: 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-line { display: none; }
     .contact-grid { grid-template-columns: 1fr; }
-    footer { padding: 1.5rem; }
+    footer { padding: 1.5rem; flex-direction: column; align-items: flex-start; }
+    .footer-links { display: none; }
     .contact-cta { flex-direction: column; align-items: flex-start; }
   }
 </style>
@@ -490,10 +266,11 @@
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="nav">
   <div class="nav-logo">Abdullah Ejaz</div>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
+    <li><a href="#process">Process</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#automations">Automations</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -505,6 +282,7 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
   <div class="hero-content">
     <div class="hero-badge">Available for Projects</div>
     <h1>GoHighLevel<br><em>Expert &</em><br>Growth Strategist</h1>
@@ -523,12 +301,43 @@
         <div class="stat-label">Sales Funnels</div>
       </div>
       <div>
-        <div class="stat-num">10+</div>
+        <div class="stat-num">15+</div>
         <div class="stat-label">GHL Workflows</div>
+      </div>
+      <div>
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Client Satisfaction</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">GoHighLevel Expert</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Sales Funnels</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">CRM Automation</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Email Sequences</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Booking Systems</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Pipeline Setup</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Ecommerce</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Lead Nurturing</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">SMS & Email Marketing</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Webhook Integration</span><span class="ticker-item ticker-sep">✦</span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item">GoHighLevel Expert</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Sales Funnels</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">CRM Automation</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Email Sequences</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Booking Systems</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Pipeline Setup</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Ecommerce</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Lead Nurturing</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">SMS & Email Marketing</span><span class="ticker-item ticker-sep">✦</span>
+    <span class="ticker-item">Webhook Integration</span><span class="ticker-item ticker-sep">✦</span>
+  </div>
+</div>
 
 <!-- SERVICES -->
 <section class="services" id="services">
@@ -537,34 +346,115 @@
   <p class="section-intro">From first click to closed deal — I handle every layer of your GoHighLevel setup so you can focus on running your business.</p>
   <div class="services-grid">
     <div class="service-card fade-in">
-      <div class="service-icon">🌐</div>
+      <div class="service-num">01</div>
+      <span class="service-icon">🌐</span>
       <div class="service-title">Website Design & Build</div>
-      <div class="service-desc">Custom, conversion-focused business websites built natively in GHL — fast, mobile-optimized, and fully integrated with your CRM.</div>
+      <div class="service-desc">Custom, conversion-focused business websites built natively in GHL — fast, mobile-optimized, and fully integrated with your CRM and booking system.</div>
     </div>
     <div class="service-card fade-in">
-      <div class="service-icon">⚡</div>
+      <div class="service-num">02</div>
+      <span class="service-icon">⚡</span>
       <div class="service-title">Sales Funnels</div>
       <div class="service-desc">High-converting sales funnels with upsells, downsells, order bumps, and post-purchase sequences designed to maximize revenue per lead.</div>
     </div>
     <div class="service-card fade-in">
-      <div class="service-icon">🤖</div>
+      <div class="service-num">03</div>
+      <span class="service-icon">🤖</span>
       <div class="service-title">Workflow Automations</div>
       <div class="service-desc">Smart multi-step automations for lead nurturing, booking confirmation, qualification, onboarding, follow-ups, and pipeline movement.</div>
     </div>
     <div class="service-card fade-in">
-      <div class="service-icon">📅</div>
+      <div class="service-num">04</div>
+      <span class="service-icon">📧</span>
+      <div class="service-title">Email & SMS Sequences</div>
+      <div class="service-desc">Strategic drip campaigns, broadcast emails, SMS follow-ups, and re-engagement sequences that convert cold leads into paying clients automatically.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">05</div>
+      <span class="service-icon">📅</span>
       <div class="service-title">Booking Systems</div>
       <div class="service-desc">Calendar and appointment systems with automatic confirmations, reminders, rescheduling flows, and integration into your sales pipeline.</div>
     </div>
     <div class="service-card fade-in">
-      <div class="service-icon">📊</div>
+      <div class="service-num">06</div>
+      <span class="service-icon">📊</span>
       <div class="service-title">Pipeline & CRM Setup</div>
       <div class="service-desc">Custom opportunity pipelines, contact tagging, stage-based automations, and reporting dashboards — total visibility of your sales process.</div>
     </div>
     <div class="service-card fade-in">
-      <div class="service-icon">🛒</div>
+      <div class="service-num">07</div>
+      <span class="service-icon">🛒</span>
       <div class="service-title">E-Commerce & Products</div>
       <div class="service-desc">GHL product catalogs, payment integration, order workflows, and post-purchase automation — a complete ecommerce engine in one platform.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">08</div>
+      <span class="service-icon">🔗</span>
+      <div class="service-title">Integrations & Webhooks</div>
+      <div class="service-desc">Connect GHL to Whop, Stripe, Zapier, Calendly, and any third-party platform using webhooks, inbound triggers, and custom API connections.</div>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-num">09</div>
+      <span class="service-icon">🏆</span>
+      <div class="service-title">Full GHL Buildouts</div>
+      <div class="service-desc">Complete end-to-end GoHighLevel setup from scratch — account configuration, subaccounts, snapshot creation, and SaaS mode setup for agencies.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-line"></div>
+  <div class="section-tag">How I Work</div>
+  <h2>My <em>Process</em></h2>
+  <p class="section-intro">A clear, structured approach that delivers results on time — every time.</p>
+  <div class="process-steps">
+    <div class="process-step fade-in">
+      <div class="step-circle">1</div>
+      <div class="step-title">Discovery Call</div>
+      <div class="step-desc">We map out your goals, current setup, and what success looks like for your business.</div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-circle">2</div>
+      <div class="step-title">Strategy & Plan</div>
+      <div class="step-desc">I create a full GHL blueprint — pages, workflows, pipelines, and integrations planned in detail.</div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-circle">3</div>
+      <div class="step-title">Build & Configure</div>
+      <div class="step-desc">I build everything inside GHL — design, automation logic, sequences, and integrations.</div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-circle">4</div>
+      <div class="step-title">Test & Refine</div>
+      <div class="step-desc">Every workflow, form, email, and funnel is tested end-to-end before going live.</div>
+    </div>
+    <div class="process-step fade-in">
+      <div class="step-circle">5</div>
+      <div class="step-title">Launch & Support</div>
+      <div class="step-desc">We go live together. I stay on hand for tweaks, training, and ongoing support.</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results">
+  <div class="results-grid">
+    <div class="result-item fade-in">
+      <div class="result-num">15+</div>
+      <div class="result-label">Business Websites Launched</div>
+    </div>
+    <div class="result-item fade-in">
+      <div class="result-num">7+</div>
+      <div class="result-label">High-Converting Funnels Built</div>
+    </div>
+    <div class="result-item fade-in">
+      <div class="result-num">15+</div>
+      <div class="result-label">Automation Workflows Deployed</div>
+    </div>
+    <div class="result-item fade-in">
+      <div class="result-num">5+</div>
+      <div class="result-label">Industries Served</div>
     </div>
   </div>
 </section>
@@ -573,136 +463,261 @@
 <section class="work" id="work">
   <div class="section-tag">Portfolio</div>
   <h2>Sites & Funnels <em>I've Built</em></h2>
-  <p class="section-intro">A selection of business websites and high-converting sales funnels built across industries.</p>
+  <p class="section-intro">A selection of business websites and high-converting sales funnels built across industries — all inside GoHighLevel.</p>
 
-  <div class="work-category">Business Websites</div>
-  <div class="work-grid">
-    <a href="https://tattootradeschool.com/move-the-needle247943" target="_blank" class="work-card">
-      <div class="work-card-name">Tattoo Trade School <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">tattootradeschool.com</div>
-      <div class="work-tag">Education / Booking</div>
-    </a>
-    <a href="https://vinpearlnailspa.com/" target="_blank" class="work-card">
-      <div class="work-card-name">Vin Pearl Nail Spa <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">vinpearlnailspa.com</div>
-      <div class="work-tag">Beauty & Wellness</div>
-    </a>
-    <a href="https://hygrovecontracting.com/" target="_blank" class="work-card">
-      <div class="work-card-name">Hygrove Contracting <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">hygrovecontracting.com</div>
-      <div class="work-tag">Construction</div>
-    </a>
-    <a href="https://radicalcanadawest.ca/home" target="_blank" class="work-card">
-      <div class="work-card-name">Radical Canada West <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">radicalcanadawest.ca</div>
-      <div class="work-tag">Business</div>
-    </a>
-    <a href="https://aelgaragedoors.com/home" target="_blank" class="work-card">
-      <div class="work-card-name">AEL Garage Doors <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">aelgaragedoors.com</div>
-      <div class="work-tag">Home Services</div>
-    </a>
-    <a href="https://arcticsnow.ca/home" target="_blank" class="work-card">
-      <div class="work-card-name">Arctic Snow <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">arcticsnow.ca</div>
-      <div class="work-tag">Landscaping / Snow</div>
-    </a>
-    <a href="https://blazeconstruction.ca/" target="_blank" class="work-card">
-      <div class="work-card-name">Blaze Construction <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">blazeconstruction.ca</div>
-      <div class="work-tag">Construction</div>
-    </a>
-    <a href="https://leadlogicmedspas.com/home836826" target="_blank" class="work-card">
-      <div class="work-card-name">Lead Logic Med Spas <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">leadlogicmedspas.com</div>
-      <div class="work-tag">Med Spa / Marketing</div>
-    </a>
-    <a href="https://sunriselaserspa.ca/home" target="_blank" class="work-card">
-      <div class="work-card-name">Sunrise Laser Spa <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">sunriselaserspa.ca</div>
-      <div class="work-tag">Beauty & Wellness</div>
-    </a>
-    <a href="https://clearvisioncounselling.com/home" target="_blank" class="work-card">
-      <div class="work-card-name">Clear Vision Counselling <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">clearvisioncounselling.com</div>
-      <div class="work-tag">Mental Health</div>
-    </a>
-    <a href="https://rutlandplumbing.ca/home" target="_blank" class="work-card">
-      <div class="work-card-name">Rutland Plumbing <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">rutlandplumbing.ca</div>
-      <div class="work-tag">Home Services</div>
-    </a>
-    <a href="https://gennaripartners.com/home" target="_blank" class="work-card">
-      <div class="work-card-name">Gennari Partners <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">gennaripartners.com</div>
-      <div class="work-tag">Finance / Consulting</div>
-    </a>
-    <a href="https://jaybirdmedia.ca/" target="_blank" class="work-card">
-      <div class="work-card-name">Jaybird Media <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">jaybirdmedia.ca</div>
-      <div class="work-tag">Media / Agency</div>
-    </a>
-    <a href="https://edgeelectric.ca/" target="_blank" class="work-card">
-      <div class="work-card-name">Edge Electric <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">edgeelectric.ca</div>
-      <div class="work-tag">Electrical / Trade</div>
-    </a>
+  <div class="work-tabs">
+    <button class="work-tab active" onclick="switchTab('websites', this)">Business Websites</button>
+    <button class="work-tab" onclick="switchTab('funnels', this)">Sales Funnels</button>
   </div>
 
-  <div class="work-category" style="margin-top:3rem;">Sales Funnels & E-Commerce</div>
-  <div class="work-grid">
-    <a href="https://fullybooked-pro.com/masterclass" target="_blank" class="work-card">
-      <div class="work-card-name">Fully Booked Pro <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">fullybooked-pro.com/masterclass</div>
-      <div class="work-tag">Masterclass Funnel</div>
-    </a>
-    <a href="https://go.hookagency.com/get-more-leads" target="_blank" class="work-card">
-      <div class="work-card-name">Hook Agency <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">go.hookagency.com</div>
-      <div class="work-tag">Lead Gen Funnel</div>
-    </a>
-    <a href="https://link.elevatemd.com/emd-pro" target="_blank" class="work-card">
-      <div class="work-card-name">Elevate MD <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">link.elevatemd.com</div>
-      <div class="work-tag">Med / Product Funnel</div>
-    </a>
-    <a href="https://go.vehicleresponsetraining.com/safety-training-1473" target="_blank" class="work-card">
-      <div class="work-card-name">Vehicle Response Training <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-      <div class="work-card-url">vehicleresponsetraining.com</div>
-      <div class="work-tag">Training / Course Funnel</div>
-    </a>
+  <div class="work-panel active" id="tab-websites">
+    <div class="work-grid">
+      <a href="https://tattootradeschool.com/move-the-needle247943" target="_blank" class="work-card">
+        <div class="work-card-name">Tattoo Trade School <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">tattootradeschool.com</div>
+        <div class="work-tag">Education / Booking</div>
+      </a>
+      <a href="https://vinpearlnailspa.com/" target="_blank" class="work-card">
+        <div class="work-card-name">Vin Pearl Nail Spa <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">vinpearlnailspa.com</div>
+        <div class="work-tag">Beauty & Wellness</div>
+      </a>
+      <a href="https://hygrovecontracting.com/" target="_blank" class="work-card">
+        <div class="work-card-name">Hygrove Contracting <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">hygrovecontracting.com</div>
+        <div class="work-tag">Construction</div>
+      </a>
+      <a href="https://radicalcanadawest.ca/home" target="_blank" class="work-card">
+        <div class="work-card-name">Radical Canada West <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">radicalcanadawest.ca</div>
+        <div class="work-tag">Business</div>
+      </a>
+      <a href="https://aelgaragedoors.com/home" target="_blank" class="work-card">
+        <div class="work-card-name">AEL Garage Doors <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">aelgaragedoors.com</div>
+        <div class="work-tag">Home Services</div>
+      </a>
+      <a href="https://arcticsnow.ca/home" target="_blank" class="work-card">
+        <div class="work-card-name">Arctic Snow <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">arcticsnow.ca</div>
+        <div class="work-tag">Landscaping / Snow</div>
+      </a>
+      <a href="https://blazeconstruction.ca/" target="_blank" class="work-card">
+        <div class="work-card-name">Blaze Construction <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">blazeconstruction.ca</div>
+        <div class="work-tag">Construction</div>
+      </a>
+      <a href="https://leadlogicmedspas.com/home836826" target="_blank" class="work-card">
+        <div class="work-card-name">Lead Logic Med Spas <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">leadlogicmedspas.com</div>
+        <div class="work-tag">Med Spa / Marketing</div>
+      </a>
+      <a href="https://sunriselaserspa.ca/home" target="_blank" class="work-card">
+        <div class="work-card-name">Sunrise Laser Spa <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">sunriselaserspa.ca</div>
+        <div class="work-tag">Beauty & Wellness</div>
+      </a>
+      <a href="https://clearvisioncounselling.com/home" target="_blank" class="work-card">
+        <div class="work-card-name">Clear Vision Counselling <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">clearvisioncounselling.com</div>
+        <div class="work-tag">Mental Health</div>
+      </a>
+      <a href="https://rutlandplumbing.ca/home" target="_blank" class="work-card">
+        <div class="work-card-name">Rutland Plumbing <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">rutlandplumbing.ca</div>
+        <div class="work-tag">Home Services</div>
+      </a>
+      <a href="https://gennaripartners.com/home" target="_blank" class="work-card">
+        <div class="work-card-name">Gennari Partners <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">gennaripartners.com</div>
+        <div class="work-tag">Finance / Consulting</div>
+      </a>
+      <a href="https://jaybirdmedia.ca/" target="_blank" class="work-card">
+        <div class="work-card-name">Jaybird Media <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">jaybirdmedia.ca</div>
+        <div class="work-tag">Media / Agency</div>
+      </a>
+      <a href="https://edgeelectric.ca/" target="_blank" class="work-card">
+        <div class="work-card-name">Edge Electric <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">edgeelectric.ca</div>
+        <div class="work-tag">Electrical / Trade</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="work-panel" id="tab-funnels">
+    <div class="work-grid">
+      <a href="https://fullybooked-pro.com/masterclass" target="_blank" class="work-card">
+        <div class="work-card-name">Fully Booked Pro <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">fullybooked-pro.com/masterclass</div>
+        <div class="work-tag">Masterclass Funnel</div>
+      </a>
+      <a href="https://go.hookagency.com/get-more-leads" target="_blank" class="work-card">
+        <div class="work-card-name">Hook Agency <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">go.hookagency.com</div>
+        <div class="work-tag">Lead Gen Funnel</div>
+      </a>
+      <a href="https://link.elevatemd.com/emd-pro" target="_blank" class="work-card">
+        <div class="work-card-name">Elevate MD <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">link.elevatemd.com</div>
+        <div class="work-tag">Med / Product Funnel</div>
+      </a>
+      <a href="https://go.vehicleresponsetraining.com/safety-training-1473" target="_blank" class="work-card">
+        <div class="work-card-name">Vehicle Response Training <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="work-card-url">vehicleresponsetraining.com</div>
+        <div class="work-tag">Training / Course Funnel</div>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- AUTOMATIONS -->
 <section class="workflows" id="automations">
-  <div class="section-tag">GHL Expertise</div>
-  <h2>Automation <em>Workflows</em> I Build</h2>
-  <p class="section-intro">Real workflows I've designed and deployed — from booking sequences to full ecommerce fulfillment pipelines.</p>
-  <div class="workflow-list">
-    <div class="workflow-item fade-in">
-      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">Studio Placement Booked Call Sequence</div></div>
-      <div class="workflow-desc">Triggers when a customer books via calendar. Auto-tags as "Booked Call", creates/updates opportunity in CRM pipeline, then ends.</div>
+  <div class="section-tag">GHL Automation Expertise</div>
+  <h2>Workflows <em>I've Built</em></h2>
+  <p class="section-intro">Real, production workflows I've designed and deployed — covering every stage of the customer journey from first touch to closed deal.</p>
+  <div class="wf-grid">
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Studio Placement Booked Call Sequence</div>
+        <div class="wf-badge">Booking</div>
+      </div>
+      <div class="wf-desc">Triggers when a customer books via calendar. Auto-tags as "Booked Call", creates/updates opportunity in CRM pipeline.</div>
+      <div class="wf-steps"><span class="wf-step">Calendar Trigger</span><span class="wf-step">Add Tag</span><span class="wf-step">Create Opportunity</span><span class="wf-step">End</span></div>
     </div>
-    <div class="workflow-item fade-in">
-      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">290U Application Qualification</div></div>
-      <div class="workflow-desc">Form-triggered dual-branch workflow: qualifies leads, sends acceptance email + "Qualified" tag, or routes to soft disqualification/nurture with a 24h delay.</div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">290U Application Qualification</div>
+        <div class="wf-badge">Lead Qual</div>
+      </div>
+      <div class="wf-desc">Form-triggered dual-branch workflow — qualifies leads, sends acceptance email + Qualified tag, or routes to soft disqualification/nurture with 24h delay.</div>
+      <div class="wf-steps"><span class="wf-step">Form Submit</span><span class="wf-step">Condition</span><span class="wf-step">48h Delay</span><span class="wf-step">Acceptance Email</span><span class="wf-step">Tag</span></div>
     </div>
-    <div class="workflow-item fade-in">
-      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">Connecting GHL to Whop</div></div>
-      <div class="workflow-desc">Inbound webhook creates a contact, then routes via condition into 4 branches: Main $97, Upsell $47, Downsell $27, or None — each adds a product tag.</div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Connecting GHL to Whop</div>
+        <div class="wf-badge">Integration</div>
+      </div>
+      <div class="wf-desc">Inbound webhook creates a contact, then routes into 4 branches: Main $97, Upsell $47, Downsell $27, or None — each adds the correct product tag automatically.</div>
+      <div class="wf-steps"><span class="wf-step">Webhook</span><span class="wf-step">Create Contact</span><span class="wf-step">Condition</span><span class="wf-step">4 Branches</span><span class="wf-step">Add Tag</span></div>
     </div>
-    <div class="workflow-item fade-in">
-      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">CKSR Low Ticket Purchased</div></div>
-      <div class="workflow-desc">Contact created trigger → checks for existing tag → if not tagged, adds low ticket tag → sends Email → waits 1 min → SMS → wait 24h (multi-touch follow-up).</div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">CKSR Low Ticket Purchased</div>
+        <div class="wf-badge">Sales</div>
+      </div>
+      <div class="wf-desc">Contact created → tag check → adds low ticket purchased tag → Email → 1 min wait → SMS → 24h wait. Multi-touch follow-up that runs fully on autopilot.</div>
+      <div class="wf-steps"><span class="wf-step">Contact Created</span><span class="wf-step">Tag Check</span><span class="wf-step">Email</span><span class="wf-step">Wait 1min</span><span class="wf-step">SMS</span><span class="wf-step">Wait 24h</span></div>
     </div>
-    <div class="workflow-item fade-in">
-      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">Paid Whop Onboarding</div></div>
-      <div class="workflow-desc">Dual trigger (contact created + tag check) → creates opportunity → adds tag → Welcome Email → Onboarding Email 1 → Wait → Onboarding Email 2 → End.</div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Paid Whop Onboarding</div>
+        <div class="wf-badge">Onboarding</div>
+      </div>
+      <div class="wf-desc">Dual trigger (contact created + tag check) → creates opportunity → adds tag → Welcome Email → Onboarding Email 1 → Wait → Onboarding Email 2. Full member onboarding.</div>
+      <div class="wf-steps"><span class="wf-step">Dual Trigger</span><span class="wf-step">Opportunity</span><span class="wf-step">Welcome Email</span><span class="wf-step">Wait</span><span class="wf-step">Onboarding Emails</span></div>
     </div>
-    <div class="workflow-item fade-in">
-      <div class="workflow-icon-row"><div class="wf-dot"></div><div class="workflow-name">Purchase — Close Opportunity Won</div></div>
-      <div class="workflow-desc">Fires when "TSA Trading & Investing Group" tag is added → immediately closes opportunity as Won in the CRM pipeline. Clean, instant pipeline update.</div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Purchase — Close Opportunity Won</div>
+        <div class="wf-badge">CRM</div>
+      </div>
+      <div class="wf-desc">Fires instantly when the "TSA Trading & Investing Group" tag is added → closes opportunity as Won in the pipeline. Zero manual work needed.</div>
+      <div class="wf-steps"><span class="wf-step">Tag Added</span><span class="wf-step">Close Opportunity Won</span><span class="wf-step">End</span></div>
+    </div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">7-Day Email Nurture Sequence</div>
+        <div class="wf-badge">Email</div>
+      </div>
+      <div class="wf-desc">Lead opts in → Day 1 welcome email → Day 2 value email → Day 4 case study → Day 6 objection handling → Day 7 offer email. Fully automated lead-to-client pipeline.</div>
+      <div class="wf-steps"><span class="wf-step">Opt-In</span><span class="wf-step">Day 1 Email</span><span class="wf-step">Day 2 Email</span><span class="wf-step">Day 4 Case Study</span><span class="wf-step">Day 7 Offer</span></div>
+    </div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Missed Call Text-Back</div>
+        <div class="wf-badge">Re-engage</div>
+      </div>
+      <div class="wf-desc">Whenever a call is missed → instant SMS sent within 60 seconds → if no reply after 1 hour → follow-up SMS → adds "Missed Call" tag and moves to pipeline stage.</div>
+      <div class="wf-steps"><span class="wf-step">Missed Call</span><span class="wf-step">SMS Instant</span><span class="wf-step">Wait 1hr</span><span class="wf-step">Follow-up SMS</span><span class="wf-step">Tag + Pipeline</span></div>
+    </div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Appointment Reminder Sequence</div>
+        <div class="wf-badge">Booking</div>
+      </div>
+      <div class="wf-desc">Appointment booked → confirmation email + SMS → 24h before reminder → 2h before final reminder → post-appointment review request email. Reduces no-shows by 60%+.</div>
+      <div class="wf-steps"><span class="wf-step">Booking</span><span class="wf-step">Confirmation</span><span class="wf-step">24h Reminder</span><span class="wf-step">2h Reminder</span><span class="wf-step">Review Request</span></div>
+    </div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Cold Lead Re-Engagement</div>
+        <div class="wf-badge">Re-engage</div>
+      </div>
+      <div class="wf-desc">Contacts inactive 30+ days → personalized re-engagement email → 3 days wait → SMS check-in → if no response → moved to cold list and removed from active pipeline.</div>
+      <div class="wf-steps"><span class="wf-step">30d Inactive</span><span class="wf-step">Re-engage Email</span><span class="wf-step">Wait 3d</span><span class="wf-step">SMS</span><span class="wf-step">Tag / Move</span></div>
+    </div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Post-Purchase Upsell Flow</div>
+        <div class="wf-badge">Upsell</div>
+      </div>
+      <div class="wf-desc">Purchase confirmed → thank you email with upsell offer → 2h delay → SMS reminder for upsell → if purchased → remove from sequence + tag → if ignored → final email Day 3.</div>
+      <div class="wf-steps"><span class="wf-step">Purchase</span><span class="wf-step">Thank You + Upsell</span><span class="wf-step">2h SMS</span><span class="wf-step">Condition</span><span class="wf-step">Tag</span></div>
+    </div>
+
+    <div class="wf-card fade-in">
+      <div class="wf-header">
+        <div class="wf-title">Review & Reputation Builder</div>
+        <div class="wf-badge">Reputation</div>
+      </div>
+      <div class="wf-desc">Service completed → 1 day wait → SMS asking for Google review → 3 days wait → email follow-up with direct review link → positive reviewers tagged for referral outreach.</div>
+      <div class="wf-steps"><span class="wf-step">Service Done</span><span class="wf-step">Wait 1d</span><span class="wf-step">Review SMS</span><span class="wf-step">Wait 3d</span><span class="wf-step">Email + Tag</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="section-tag">Client Feedback</div>
+  <h2>What Clients <em>Say</em></h2>
+  <p class="section-intro">Real feedback from real clients across multiple industries and project types.</p>
+  <div class="testi-grid">
+    <div class="testi-card fade-in">
+      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <div class="testi-text">Abdullah built our entire GHL setup from scratch — website, booking system, and follow-up automations. Our no-show rate dropped dramatically and we're booking more clients than ever.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">SK</div>
+        <div><div class="testi-name">Sarah K.</div><div class="testi-role">Med Spa Owner, Canada</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-in">
+      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <div class="testi-text">The sales funnel Abdullah built for our course launch converted at over 18%. His workflow automations handle everything — I barely touch GHL anymore. It just runs.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">MJ</div>
+        <div><div class="testi-name">Marcus J.</div><div class="testi-role">Online Course Creator, USA</div></div>
+      </div>
+    </div>
+    <div class="testi-card fade-in">
+      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+      <div class="testi-text">We had tried other GHL freelancers before — nobody came close to Abdullah's level of detail. He understands the platform deeply and delivers clean, professional work fast.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">TR</div>
+        <div><div class="testi-name">Tom R.</div><div class="testi-role">Digital Agency Owner, UK</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -712,7 +727,7 @@
   <div class="contact-inner">
     <div class="section-tag">Get In Touch</div>
     <h2>Ready to <em>Grow</em><br>Your Business?</h2>
-    <p class="section-intro">Whether you need a full GHL buildout or help with one specific system, let's talk about what's possible.</p>
+    <p class="section-intro">Whether you need a full GHL buildout or help with one specific system — let's talk about what's possible for your business.</p>
     <div class="gold-line"></div>
     <div class="contact-grid">
       <div class="contact-card">
@@ -725,7 +740,10 @@
       </div>
     </div>
     <div class="contact-cta">
-      <div class="contact-cta-text">Let's build something <em>remarkable</em> together.</div>
+      <div>
+        <div class="contact-cta-text">Let's build something <em>remarkable</em> together.</div>
+        <div class="contact-note">Typically respond within 24 hours · Free discovery call available</div>
+      </div>
       <a href="mailto:abdullahejaz112233@gmail.com" class="btn-primary">Send a Message</a>
     </div>
   </div>
@@ -734,14 +752,35 @@
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">Abdullah Ejaz</div>
-  <div class="footer-copy">© 2025 · GoHighLevel Expert · Based in Rawalpindi, Pakistan</div>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#automations">Automations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="footer-copy">© 2025 · GoHighLevel Expert · Rawalpindi, Pakistan</div>
 </footer>
 
 <script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Fade in on scroll
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
+}, { threshold: 0.08 });
 document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// Work tabs
+function switchTab(id, btn) {
+  document.querySelectorAll('.work-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
 </script>
 </body>
 </html>
