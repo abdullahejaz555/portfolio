@@ -129,14 +129,17 @@
   .met-n .plus { color: var(--accent); }
   .met-l { font-size: 0.85rem; color: var(--grey-dim); margin-top: 0.65rem; }
 
-  .work-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 3.5rem; }
-  .work-card { background: var(--panel); border: 1px solid var(--line-2); border-radius: 16px; padding: 1.5rem 1.35rem; text-decoration: none; display: block; transition: all 0.28s; position: relative; }
+  .work-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.15rem; margin-top: 3.5rem; }
+  .work-card { min-height: 150px; background: linear-gradient(150deg,var(--panel),rgba(25,28,37,0.72)); border: 1px solid var(--line-2); border-radius: 18px; padding: 1.65rem 1.5rem; text-decoration: none; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.28s; position: relative; overflow: hidden; }
+  .work-card::before { content: ''; position: absolute; width: 110px; height: 110px; border-radius: 50%; right: -55px; bottom: -65px; background: rgba(200,255,77,0.06); transition: all 0.3s; }
   .work-card:hover { transform: translateY(-5px); border-color: rgba(200,255,77,0.35); }
+  .work-card:hover::before { transform: scale(1.35); background: rgba(200,255,77,0.1); }
   .work-idx { font-size: 0.72rem; color: var(--grey-dim); font-weight: 600; letter-spacing: 0.05em; }
   .work-n { font-size: 1.02rem; font-weight: 600; margin: 0.85rem 0 0.3rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; color: #fff; }
   .work-n svg { width: 15px; height: 15px; stroke: var(--accent); fill: none; stroke-width: 1.7; opacity: 0; transform: translate(-3px,3px); transition: all 0.25s; color: #fff; }
   .work-card:hover .work-n svg { opacity: 1; transform: none; }
-  .work-c { font-size: 0.8rem; color: var(--grey-dim); }
+  .work-c { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.02em; }
+  .work-note { margin-top: 1.4rem; color: var(--grey-dim); font-size: 0.82rem; }
 
   .migration { background: var(--bg-soft); }
   .migration-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 2.5rem; align-items: start; margin-top: 3.5rem; }
@@ -357,8 +360,9 @@
   <div class="wrap">
     <div class="kicker fade"><span class="bar"></span>Selected work</div>
     <h2 class="fade">Live builds, <span class="it">real businesses</span></h2>
-    <p class="lead fade">A sample of websites and funnels I've built and launched across industries.</p>
+    <p class="lead fade">A larger selection from 100+ websites, landing pages, sales funnels and marketing systems delivered across different industries and platforms.</p>
     <div class="work-grid" id="workGrid"></div>
+    <p class="work-note fade">Showing 36 working client projects · Each card opens the published website or funnel.</p>
   </div>
 </section>
 
@@ -477,15 +481,40 @@
   var work = [
     ["Hygrove Contracting","Construction Website · GoHighLevel","https://hygrovecontracting.com/"],
     ["Crescent Park Plumbing","Home Services Website · GoHighLevel","https://www.crescentparkplumbing.com/home"],
+    ["Rutland Plumbing","Plumbing Website · GoHighLevel","https://rutlandplumbing.ca/home"],
     ["Gennari Partners","Coaching Website · GoHighLevel","https://gennaripartners.com/home"],
     ["Elevated Roofing Solutions","Roofing Website · GoHighLevel","https://elevatedroofingsolutions.ca/home"],
+    ["School of Threaded Arts","Education Funnel · GoHighLevel","https://schoolofthreadedarts.com/cksr"],
     ["Hook Agency","Lead Generation Funnel · GoHighLevel","https://go.hookagency.com/get-more-leads"],
+    ["Vehicle Response Training","Safety Training Funnel · GoHighLevel","https://go.vehicleresponsetraining.com/safety-training-1473"],
+    ["Edge Electric","Electrical Services Website · GoHighLevel","https://edgeelectric.ca/"],
+    ["Jaybird Media","Production Website · GoHighLevel","https://jaybirdmedia.ca/"],
+    ["Mentoring with the Mentees","Coaching Funnel","https://mentoringwiththementees.org/"],
+    ["Tattoo Trade School","Education Website &amp; Funnel Hub","https://tattootradeschool.com/"],
+    ["Move the Needle","Education Campaign Funnel","https://tattootradeschool.com/move-the-needle247943"],
+    ["Crash to Cash","Lead Generation Funnel · GoHighLevel","https://go.crashtocash.com/"],
     ["ElevateMD","Health Offer Funnel · GoHighLevel","https://link.elevatemd.com/emd-pro"],
     ["Her Influence Academy","Masterclass Funnel · GoHighLevel","https://blueprint.herinfluenceacademy.com/"],
-    ["Mentoring with the Mentees","Coaching Funnel","https://mentoringwiththementees.org/"],
+    ["JC Formworks","Concrete &amp; Formwork Website","https://jcformworks.ca/"],
+    ["Atmoserra","Professional Business Website","https://www.atmoserra.ca/"],
+    ["Khurana Associates","Professional Services Website","https://khuranaassoc.ca/"],
+    ["Reflections Hall","Events &amp; Venue Website","https://reflectionshall.ca/"],
+    ["Iron Forge","Industrial Services Website","https://ironforge.ca/"],
+    ["MHD Building","Construction Website","https://mhdbuilding.ca/"],
+    ["MWH Contracting","Contracting Website","https://www.mwhcontracting.ca/"],
+    ["Wyse Enterprise","Business Services Website","https://wyseenterprise.ca/"],
+    ["RoadQuest Driving Academy","Driving School Website","https://roadquestdrivingacademy.com/"],
+    ["Hannah Fitness","Fitness &amp; Coaching Website","https://www.hannahfitness.com/"],
+    ["Emria Contracting","Construction Website","https://emriacontracting.com/"],
+    ["Okanagan Shaped","Local Business Website","https://okanaganshaped.ca/"],
+    ["Silverwood Homes","Home Builder Website","https://silverwoodhomes.ca/"],
+    ["Rivers Edge Massage","Wellness &amp; Massage Website","https://riversedgemassage.ca/"],
+    ["Arctic Snow","Snow Services Website","https://arcticsnow.ca/"],
+    ["J&amp;J Construction","Construction Website","https://jandjconstruction.ca/"],
+    ["Vin Pearl Nail Spa","Beauty &amp; Spa Website","https://vinpearlnailspa.com/"],
+    ["The Mindful Money Coach","Financial Coaching Website","https://themindfulmoneycoach.com/"],
     ["Emblazon Design","Business Website · Wix","https://www.emblazondesign.net/"],
-    ["Jaybird Media","Production Website · GoHighLevel","https://jaybirdmedia.ca/"],
-    ["Edge Electric","Local Services Website · GoHighLevel","https://edgeelectric.ca/"]
+    ["Tessarand","Ecommerce Store · Shopify","https://tessarand.com/"]
   ];
   document.getElementById('workGrid').innerHTML = work.map(function(w,i){
     var n = (i+1).toString().padStart(2,'0');
