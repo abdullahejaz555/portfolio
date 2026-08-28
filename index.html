@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abdullah Ejaz — Marketing Systems & Automation Expert</title>
-<meta name="description" content="I design and build marketing systems that run themselves — GoHighLevel funnels, websites, automations, HubSpot migrations, and custom integrations.">
+<title>Abdullah Ejaz — Funnels, Websites, CRM & Automation Expert</title>
+<meta name="description" content="100+ funnels, websites and marketing systems delivered across GoHighLevel, WordPress and ClickFunnels — including complete HubSpot to GHL migrations, automation and tracking.">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -138,6 +138,16 @@
   .work-card:hover .work-n svg { opacity: 1; transform: none; }
   .work-c { font-size: 0.8rem; color: var(--grey-dim); }
 
+  .migration { background: var(--bg-soft); }
+  .migration-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 2.5rem; align-items: start; margin-top: 3.5rem; }
+  .migration-card { background: linear-gradient(165deg, rgba(200,255,77,0.09), rgba(20,22,29,0.6)); border: 1px solid rgba(200,255,77,0.25); border-radius: 24px; padding: 2.3rem; position: sticky; top: 6rem; }
+  .migration-card .big { font-size: clamp(2.2rem,4vw,3.4rem); line-height: 1; color: var(--accent); margin-bottom: 1rem; }
+  .migration-card p { color: var(--grey); font-size: 0.95rem; }
+  .migration-list { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+  .migration-item { background: var(--panel); border: 1px solid var(--line-2); border-radius: 16px; padding: 1.25rem; }
+  .migration-item b { display: block; font-size: 0.94rem; margin-bottom: 0.25rem; }
+  .migration-item span { color: var(--grey); font-size: 0.82rem; }
+
   .process { background: var(--bg-soft); }
   .steps { margin-top: 3.5rem; }
   .prow { display: grid; grid-template-columns: auto 1fr auto; gap: 2rem; align-items: center; padding: 1.9rem 0; border-top: 1px solid var(--line-2); transition: padding-left 0.3s; }
@@ -201,6 +211,8 @@
     .met:nth-child(2) { border-right: none; }
     .met:nth-child(1), .met:nth-child(2) { border-bottom: 1px solid var(--line-2); }
     .work-grid { grid-template-columns: repeat(2,1fr); }
+    .migration-grid { grid-template-columns: 1fr; }
+    .migration-card { position: static; }
   }
   @media (max-width: 620px) {
     section { padding: 4.5rem 0; }
@@ -211,6 +223,7 @@
     .final-card { padding: 3.5rem 1.5rem; }
     .foot-inner { flex-direction: column; align-items: flex-start; }
     .metrics { grid-template-columns: 1fr 1fr; }
+    .migration-list { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -236,7 +249,7 @@
     <div class="hero-copy">
       <div class="avail"><span class="d"></span>Available for new projects · Replies within hours</div>
       <h1>I build marketing systems that <span class="it">run themselves</span></h1>
-      <p class="hero-sub">GoHighLevel funnels, websites, and automations — plus HubSpot migrations and custom integrations. One expert to design, connect, and run your entire stack.</p>
+      <p class="hero-sub">I have delivered 100+ funnels, websites and marketing systems across GoHighLevel, WordPress and ClickFunnels — including complete HubSpot-to-GHL migrations, automation and tracking.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-a heroWa"><svg viewBox="0 0 24 24" fill="#0a0b0f"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.9 7.9 0 0 0 3.8 1h.01a7.94 7.94 0 0 0 5.6-13.58zM12.05 18.5a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.65.67-2.43-.16-.25a6.59 6.59 0 1 1 5.6 3.09zm3.6-4.94c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.62.77-.23.15-.43.05a5.4 5.4 0 0 1-1.6-.98 6 6 0 0 1-1.1-1.37c-.12-.2 0-.31.09-.41s.2-.23.3-.35a1.3 1.3 0 0 0 .2-.33.37.37 0 0 0 0-.35c0-.1-.44-1.06-.6-1.45s-.32-.33-.44-.34h-.38a.72.72 0 0 0-.52.24 2.2 2.2 0 0 0-.68 1.63 3.8 3.8 0 0 0 .8 2.03 8.75 8.75 0 0 0 3.35 2.96c.47.2.83.32 1.11.42.47.15.9.13 1.24.08.38-.06 1.17-.48 1.33-.94s.17-.86.12-.94-.18-.14-.38-.24z"/></svg>Let's work together</a>
         <a href="#work" class="btn-b"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>See the work</a>
@@ -253,7 +266,7 @@
         <div class="pname"><div class="t">Abdullah Ejaz</div><div class="r">Marketing Systems &amp; Automation</div></div>
       </div>
       <div class="stat-float sf-a"><div class="n">10+</div><div class="l">Platforms mastered</div></div>
-      <div class="stat-float sf-b"><div class="n">15+</div><div class="l">Systems shipped</div></div>
+      <div class="stat-float sf-b"><div class="n">100+</div><div class="l">Builds delivered</div></div>
     </div>
   </div>
 </header>
@@ -292,7 +305,7 @@
   <div class="wrap">
     <div class="kicker fade"><span class="bar"></span>What I do</div>
     <h2 class="fade">One expert for your <span class="it">entire stack</span></h2>
-    <p class="lead fade">GoHighLevel is home base — and I connect everything around it into a system that just works.</p>
+    <p class="lead fade">GoHighLevel is a core specialty, but I build complete customer journeys across WordPress, ClickFunnels and the wider marketing stack.</p>
     <div class="svc-grid">
       <div class="svc hot fade">
         <span class="tag">Core focus</span>
@@ -308,12 +321,12 @@
       <div class="svc fade">
         <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4zM4 14h16v6H4z"/><path d="M8 7h.01M8 17h.01"/></svg></div>
         <div class="svc-t">HubSpot → GHL Migration</div>
-        <div class="svc-d">Move your whole HubSpot library into GoHighLevel — workflows, pipelines, tags, and sequences rebuilt one-to-one, nothing lost.</div>
+        <div class="svc-d">Complete CRM migration: contacts, activity history, emails, workflows, pipelines, opportunities, custom fields, custom values, tags and supporting assets.</div>
       </div>
       <div class="svc fade">
         <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07L11 4"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07L13 20"/></svg></div>
-        <div class="svc-t">Custom Integrations &amp; SaaS</div>
-        <div class="svc-d">API connections, webhooks, and custom-built tools that make disconnected platforms behave like one — including full SaaS builds.</div>
+        <div class="svc-t">WordPress &amp; ClickFunnels</div>
+        <div class="svc-d">Responsive business websites, landing pages, sales funnels, checkout flows and integrations built beyond GHL when another platform is the better fit.</div>
       </div>
       <div class="svc fade">
         <div class="svc-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div>
@@ -332,9 +345,9 @@
 <div class="metrics-band">
   <div class="wrap">
     <div class="metrics">
-      <div class="met"><div class="met-n" data-to="15"><span class="plus">+</span></div><div class="met-l">Sites &amp; funnels launched</div></div>
+      <div class="met"><div class="met-n" data-to="100"><span class="plus">+</span></div><div class="met-l">Funnels, sites &amp; systems delivered</div></div>
       <div class="met"><div class="met-n" data-to="10"><span class="plus">+</span></div><div class="met-l">Platforms mastered</div></div>
-      <div class="met"><div class="met-n" data-to="15"><span class="plus">+</span></div><div class="met-l">Automations deployed</div></div>
+      <div class="met"><div class="met-n" data-to="50"><span class="plus">+</span></div><div class="met-l">Builds for one agency client</div></div>
       <div class="met"><div class="met-n" data-to="100"><span class="plus">%</span></div><div class="met-l">Client satisfaction</div></div>
     </div>
   </div>
@@ -346,6 +359,28 @@
     <h2 class="fade">Live builds, <span class="it">real businesses</span></h2>
     <p class="lead fade">A sample of websites and funnels I've built and launched across industries.</p>
     <div class="work-grid" id="workGrid"></div>
+  </div>
+</section>
+
+<section class="migration" id="migration">
+  <div class="wrap">
+    <div class="kicker fade"><span class="bar"></span>CRM migration specialty</div>
+    <h2 class="fade">HubSpot to GHL, <span class="it">rebuilt completely</span></h2>
+    <p class="lead fade">I do more than export a contact list. I audit the existing HubSpot system, migrate the business data, rebuild the operating logic in GoHighLevel, test every route and support the team through launch.</p>
+    <div class="migration-grid">
+      <div class="migration-card fade">
+        <div class="big serif">A working system — not just moved data.</div>
+        <p>Every migration is mapped before transfer, rebuilt around GHL's structure and validated after import. The goal is continuity: the team keeps its history, processes and follow-up logic while gaining a cleaner system.</p>
+      </div>
+      <div class="migration-list">
+        <div class="migration-item fade"><b>Contacts &amp; activity</b><span>Contact records, notes, activities, ownership, tags and lifecycle information.</span></div>
+        <div class="migration-item fade"><b>Custom data</b><span>Contact fields, custom values, properties and the mappings needed inside GHL.</span></div>
+        <div class="migration-item fade"><b>Emails &amp; assets</b><span>Email templates, nurture content, forms, calendars and reusable campaign assets.</span></div>
+        <div class="migration-item fade"><b>Automations</b><span>HubSpot workflows recreated as tested GHL triggers, conditions, actions and follow-ups.</span></div>
+        <div class="migration-item fade"><b>Pipelines &amp; opportunities</b><span>Stages, deal data, opportunity routing, assignments and sales-process automation.</span></div>
+        <div class="migration-item fade"><b>QA &amp; launch</b><span>Deduplication, field validation, workflow testing, deliverability checks and team handover.</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -440,14 +475,17 @@
 
   var arrow = '<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>';
   var work = [
-    ["Tattoo Trade School","Education · GHL","https://tattootradeschool.com/move-the-needle247943"],
-    ["Vin Pearl Nail Spa","Beauty · GHL","https://vinpearlnailspa.com/"],
-    ["Hygrove Contracting","Construction · GHL","https://hygrovecontracting.com/"],
-    ["AEL Garage Doors","Home Services · GHL","https://aelgaragedoors.com/home"],
-    ["Lead Logic Med Spas","Marketing · GHL","https://leadlogicmedspas.com/home836826"],
-    ["Clear Vision Counselling","Mental Health · GHL","https://clearvisioncounselling.com/home"],
-    ["Gennari Partners","Finance · GHL","https://gennaripartners.com/home"],
-    ["Fully Booked Pro","Masterclass · Funnel","https://fullybooked-pro.com/masterclass"]
+    ["Hygrove Contracting","Construction Website · GoHighLevel","https://hygrovecontracting.com/"],
+    ["Crescent Park Plumbing","Home Services Website · GoHighLevel","https://www.crescentparkplumbing.com/home"],
+    ["Gennari Partners","Coaching Website · GoHighLevel","https://gennaripartners.com/home"],
+    ["Elevated Roofing Solutions","Roofing Website · GoHighLevel","https://elevatedroofingsolutions.ca/home"],
+    ["Hook Agency","Lead Generation Funnel · GoHighLevel","https://go.hookagency.com/get-more-leads"],
+    ["ElevateMD","Health Offer Funnel · GoHighLevel","https://link.elevatemd.com/emd-pro"],
+    ["Her Influence Academy","Masterclass Funnel · GoHighLevel","https://blueprint.herinfluenceacademy.com/"],
+    ["Mentoring with the Mentees","Coaching Funnel","https://mentoringwiththementees.org/"],
+    ["Emblazon Design","Business Website · Wix","https://www.emblazondesign.net/"],
+    ["Jaybird Media","Production Website · GoHighLevel","https://jaybirdmedia.ca/"],
+    ["Edge Electric","Local Services Website · GoHighLevel","https://edgeelectric.ca/"]
   ];
   document.getElementById('workGrid').innerHTML = work.map(function(w,i){
     var n = (i+1).toString().padStart(2,'0');
@@ -456,7 +494,7 @@
 
   var faqs = [
     ["Which platform is right for me?","I'll recommend the best fit in our first chat — I build on GoHighLevel, ClickFunnels, WordPress, Wix, Kajabi and Kartra, so you're never forced into the wrong tool."],
-    ["Can you move me off HubSpot?","Yes — HubSpot to GoHighLevel migration is a specialty. I rebuild your workflows, pipelines, tags and sequences one-to-one so nothing breaks and nothing is lost."],
+    ["Can you move me off HubSpot?","Yes — HubSpot to GoHighLevel migration is a specialty. I migrate contacts, activity, emails, pipelines, opportunities, custom fields and custom values, then rebuild and test your workflows inside GHL."],
     ["Do you only take full buildouts?","No. I take full systems as well as single pieces — a funnel, one automation, a tricky integration, or a tracking fix. Message me and we'll scope it."],
     ["How do we get started?","Tap the WhatsApp button and tell me what you're working on. I reply personally, usually within a few hours, and we map the fastest way forward."]
   ];
