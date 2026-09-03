@@ -141,6 +141,16 @@
   .work-c { font-size: 0.78rem; color: var(--accent); letter-spacing: 0.02em; }
   .work-note { margin-top: 1.4rem; color: var(--grey-dim); font-size: 0.82rem; }
 
+  .wordpress { background: var(--bg-soft); }
+  .wp-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 2.5rem; align-items: start; margin-top: 3.5rem; }
+  .wp-intro { background: linear-gradient(165deg, rgba(200,255,77,0.09), rgba(20,22,29,0.6)); border: 1px solid rgba(200,255,77,0.25); border-radius: 24px; padding: 2.3rem; }
+  .wp-intro h3 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem,4vw,3.1rem); font-weight: 400; line-height: 1.05; color: var(--accent); margin-bottom: 1rem; }
+  .wp-intro p { color: var(--grey); font-size: 0.95rem; }
+  .wp-capabilities { display: grid; grid-template-columns: repeat(2,1fr); gap: 1rem; }
+  .wp-capability { background: var(--panel); border: 1px solid var(--line-2); border-radius: 16px; padding: 1.3rem; }
+  .wp-capability b { display: block; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .wp-capability span { color: var(--grey); font-size: 0.83rem; }
+
   .migration { background: var(--bg-soft); }
   .migration-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 2.5rem; align-items: start; margin-top: 3.5rem; }
   .migration-card { background: linear-gradient(165deg, rgba(200,255,77,0.09), rgba(20,22,29,0.6)); border: 1px solid rgba(200,255,77,0.25); border-radius: 24px; padding: 2.3rem; position: sticky; top: 6rem; }
@@ -216,6 +226,7 @@
     .work-grid { grid-template-columns: repeat(2,1fr); }
     .migration-grid { grid-template-columns: 1fr; }
     .migration-card { position: static; }
+    .wp-layout { grid-template-columns: 1fr; }
   }
   @media (max-width: 620px) {
     section { padding: 4.5rem 0; }
@@ -227,6 +238,7 @@
     .foot-inner { flex-direction: column; align-items: flex-start; }
     .metrics { grid-template-columns: 1fr 1fr; }
     .migration-list { grid-template-columns: 1fr; }
+    .wp-capabilities { grid-template-columns: 1fr; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
@@ -252,7 +264,7 @@
     <div class="hero-copy">
       <div class="avail"><span class="d"></span>Available for new projects · Replies within hours</div>
       <h1>I build marketing systems that <span class="it">run themselves</span></h1>
-      <p class="hero-sub">I have delivered 100+ funnels, websites and marketing systems across GoHighLevel, WordPress and ClickFunnels — including complete HubSpot-to-GHL migrations, automation and tracking.</p>
+      <p class="hero-sub">I design and develop responsive WordPress websites, conversion-focused funnels and complete marketing systems across WordPress, GoHighLevel and ClickFunnels — including CRM migration, automation and accurate tracking.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-a heroWa"><svg viewBox="0 0 24 24" fill="#0a0b0f"><path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4a7.94 7.94 0 0 0-6.9 11.9L4 20l4.2-1.1a7.9 7.9 0 0 0 3.8 1h.01a7.94 7.94 0 0 0 5.6-13.58zM12.05 18.5a6.6 6.6 0 0 1-3.36-.92l-.24-.14-2.5.65.67-2.43-.16-.25a6.59 6.59 0 1 1 5.6 3.09zm3.6-4.94c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.62.77-.23.15-.43.05a5.4 5.4 0 0 1-1.6-.98 6 6 0 0 1-1.1-1.37c-.12-.2 0-.31.09-.41s.2-.23.3-.35a1.3 1.3 0 0 0 .2-.33.37.37 0 0 0 0-.35c0-.1-.44-1.06-.6-1.45s-.32-.33-.44-.34h-.38a.72.72 0 0 0-.52.24 2.2 2.2 0 0 0-.68 1.63 3.8 3.8 0 0 0 .8 2.03 8.75 8.75 0 0 0 3.35 2.96c.47.2.83.32 1.11.42.47.15.9.13 1.24.08.38-.06 1.17-.48 1.33-.94s.17-.86.12-.94-.18-.14-.38-.24z"/></svg>Let's work together</a>
         <a href="#work" class="btn-b"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>See the work</a>
@@ -328,8 +340,8 @@
       </div>
       <div class="svc fade">
         <div class="svc-ic"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07L11 4"/><path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07L13 20"/></svg></div>
-        <div class="svc-t">WordPress &amp; ClickFunnels</div>
-        <div class="svc-d">Responsive business websites, landing pages, sales funnels, checkout flows and integrations built beyond GHL when another platform is the better fit.</div>
+        <div class="svc-t">WordPress Development</div>
+        <div class="svc-d">Responsive WordPress websites, custom layouts, Elementor builds, landing pages, plugin integrations, performance optimization, troubleshooting and launch support.</div>
       </div>
       <div class="svc fade">
         <div class="svc-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div>
@@ -362,7 +374,29 @@
     <h2 class="fade">Live builds, <span class="it">real businesses</span></h2>
     <p class="lead fade">A larger selection from 100+ websites, landing pages, sales funnels and marketing systems delivered across different industries and platforms.</p>
     <div class="work-grid" id="workGrid"></div>
-    <p class="work-note fade">Showing 36 working client projects · Each card opens the published website or funnel.</p>
+    <p class="work-note fade">Showing 40 working client projects · Each card opens the published website or funnel.</p>
+  </div>
+</section>
+
+<section class="wordpress" id="wordpress">
+  <div class="wrap">
+    <div class="kicker fade"><span class="bar"></span>WordPress expertise</div>
+    <h2 class="fade">WordPress websites built for <span class="it">performance and growth</span></h2>
+    <p class="lead fade">From complete business websites to high-converting landing pages, I handle the full WordPress build: structure, responsive development, integrations, technical optimization, testing and launch.</p>
+    <div class="wp-layout">
+      <div class="wp-intro fade">
+        <h3>Design, development and technical support in one place.</h3>
+        <p>I build clean, easy-to-manage WordPress websites that look professional on every device and remain reliable after launch. I can also improve, troubleshoot or complete an existing website without rebuilding what already works.</p>
+      </div>
+      <div class="wp-capabilities">
+        <div class="wp-capability fade"><b>Custom WordPress Builds</b><span>Business websites and landing pages developed around your brand, content and conversion goals.</span></div>
+        <div class="wp-capability fade"><b>Elementor &amp; Theme Customization</b><span>Custom responsive layouts, reusable sections and precise design implementation.</span></div>
+        <div class="wp-capability fade"><b>Performance &amp; Technical SEO</b><span>Core speed improvements, image optimization, clean page structure and essential on-page settings.</span></div>
+        <div class="wp-capability fade"><b>Integrations &amp; Troubleshooting</b><span>Forms, CRM connections, analytics, tracking, plugin configuration and reliable issue resolution.</span></div>
+        <div class="wp-capability fade"><b>Responsive Quality Assurance</b><span>Cross-device checks for layout, navigation, forms and calls to action before launch.</span></div>
+        <div class="wp-capability fade"><b>Maintenance &amp; Ongoing Support</b><span>Updates, backups, security checks, content changes and new functionality as your site grows.</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -479,6 +513,10 @@
 
   var arrow = '<svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H9M17 7v8"/></svg>';
   var work = [
+    ["Tickblaze","Trading Technology Website · WordPress","https://tickblaze.com/"],
+    ["PropShopTrader","Trading Platform Website · WordPress","https://propshoptrader.com/"],
+    ["Hat Creek Training","Professional Training Website · WordPress","https://www.hatcreektraining.com/"],
+    ["MI Furniture","Furniture Website · WordPress","https://mi-furniture.co.uk/"],
     ["Hygrove Contracting","Construction Website · GoHighLevel","https://hygrovecontracting.com/"],
     ["Crescent Park Plumbing","Home Services Website · GoHighLevel","https://www.crescentparkplumbing.com/home"],
     ["Rutland Plumbing","Plumbing Website · GoHighLevel","https://rutlandplumbing.ca/home"],
